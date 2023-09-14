@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "833330222147",
+    "project_id": "pokiestest",
+    "storage_bucket": "pokiestest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:833330222147:android:d8688356ee8d10de6f30f6",
+        "android_client_info": {
+          "package_name": "com.test.masterpokiescasino"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWywqStsY9IyEvKRcFMQ44s-cUAEGEjdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
