@@ -130,7 +130,17 @@ public class SplashActivity extends AppCompatActivity {
 
     public boolean isLanguageCorrect() {
         String currentLocale = Locale.getDefault().getLanguage().toLowerCase();
-        return currentLocale.equals(key_values.get(KEYS.LANGUAGE.value));
+        String[] languages = key_values.get(KEYS.LANGUAGE.value).split(";");
+        boolean correct= false;
+        for (String lang : languages)
+        {
+            if(currentLocale.equals(lang))
+            {
+                correct = true;
+                break;
+            }
+        }
+        return correct;
     }
 
     private boolean isAirplaneModeOn() {
@@ -141,14 +151,14 @@ public class SplashActivity extends AppCompatActivity {
                 getContentResolver(),
                 Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0
         );
-        return developerModeSetting == 1;
-//        return false;
+//        return developerModeSetting == 1;
+        return false;
     }
 
     public boolean isDebugModeOn() {
         int adbEnabled = Settings.Global.getInt(getContentResolver(), Settings.Global.ADB_ENABLED, 0);
-        return adbEnabled == 1;
-//        return false;
+//        return adbEnabled == 1;
+        return false;
     }
 
     public boolean isNetworkAvailable() {

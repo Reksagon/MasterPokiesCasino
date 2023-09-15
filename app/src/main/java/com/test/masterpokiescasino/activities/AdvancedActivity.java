@@ -1,6 +1,7 @@
 package com.test.masterpokiescasino.activities;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -20,6 +21,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
@@ -175,7 +177,7 @@ public class AdvancedActivity extends AppCompatActivity implements AdvancedWebVi
         binding.advancedView.onActivityResult(requestCode, resultCode, intent);
         if (code == requestCode)
             if (callback == null) return;
-        if (resultCode != -1) {
+        if (resultCode != -1 && callback != null) {
             callback.onReceiveValue(null);
             return;
         }
@@ -189,12 +191,31 @@ public class AdvancedActivity extends AppCompatActivity implements AdvancedWebVi
 
     @Override
     public void onBackPressed() {
-        if (!binding.advancedView.onBackPressed()) { return; }
+        if (!binding.advancedView.onBackPressed()) {
+            return;
+        }
 
-        super.onBackPressed();
+        wandDoYoExit();
     }
 
+    private void wandDoYoExit() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Wand do you exit?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
 
+        builder.create().show();
+    }
     @Override
     public void onPageStarted(String url, Bitmap favicon) {
 
